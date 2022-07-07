@@ -26,8 +26,13 @@ char	*get_next_line(int fd)
 			if (i == BUFFER_SIZE || buffer[i] != '\n')
 				ft_strjoin(retv, buffer);
 			if (buffer[i] == '\n')
-
+			{
+				trimmer(buffer, i, retv);
+				return (retv);
+			}
 			i++;
 		}
+		return (buffer);
 	}
+	return (0);
 }

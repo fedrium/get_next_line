@@ -88,5 +88,6 @@ char	*trimmer(buffer, i, retv)
 
 	temp = ft_substr(buffer, 0, i);
 	ft_strjoin(retv, temp);
-	
+	buffer = ft_strdup(*retv + 1 + i);
+	return (temp);
 }
