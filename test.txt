@@ -1,0 +1,3 @@
+this is a test file
+apple
+for Chia's get next line
