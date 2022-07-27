@@ -119,12 +119,11 @@ char	*ft_strchr(const char *str, int chr)
 	return (0);
 }
 
-char	*trimmer(char *retv, int i, char *book, char *buffer) //modify to work with strchr
+char	*trimmer(int i, char *buffer, char *book) //modify to work with strchr
 {
 	char *temp;
 
-	retv = ft_strjoin(buffer, retv);
-	temp = ft_substr(book, 0, i + 1);
-	retv = ft_strjoin(retv, temp);
-	return (retv);
+	temp = ft_substr(book, 0, i);
+	buffer = ft_strjoin(buffer, temp);
+	return (buffer);
 }
