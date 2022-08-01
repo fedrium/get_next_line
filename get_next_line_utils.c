@@ -6,7 +6,7 @@
 /*   By: cyu-xian <cyu-xian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 13:59:43 by cyu-xian          #+#    #+#             */
-/*   Updated: 2022/07/23 17:51:49 by cyu-xian         ###   ########.fr       */
+/*   Updated: 2022/07/30 17:46:08 by cyu-xian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,8 +122,12 @@ char	*ft_strchr(const char *str, int chr)
 char	*trimmer(int i, char *buffer, char *book) //modify to work with strchr
 {
 	char *temp;
+	char *temp2;
 
 	temp = ft_substr(book, 0, i);
+	temp2 = buffer;
 	buffer = ft_strjoin(buffer, temp);
+	free(temp2);
+	free(temp);
 	return (buffer);
 }
