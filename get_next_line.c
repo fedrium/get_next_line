@@ -23,36 +23,55 @@ int	new_line_finder(char *line)
 	return (i);
 }
 
-char	*trimmer(int fd, char *buffer)
+char	*mem_allocate(int fd, char *buffer)
 {
-	char	book[BUFFER_SIZE + 1];
-	char	temp;
+	char	*temp;
 	int		num;
-
+	char	book[BUFFER_SIZE + 1];
 
 	if (!buffer)
 	{
-		buffer = (char *)malloc(sizeof(char) * BUFFER_SIZE);
-		buffer[0] = '\0';
-	}
-	num = book(fd, book, BUFFER_SIZE);
-	book[num] = '\0';
+		buffer = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
+		if (buffer == NULL)
+			return (NULL);
+	}	
 	if (num > 0)
 	{
+		book[num] = '\0';
 		temp = ft_strjoin(buffer, book);
 		free(buffer);
 		buffer = temp;
+		if (ft_strchr(buffer, '\n'))
+			break;
+		num = book(fd, book, BUFFER_SIZE);
 	}
+	return (buffer);
 }
 
 char	*get_next_line(int fd)
 {
-	int	i;
-	static char	buffer;
-	char	*retv;
+	static char 	buffer;
 	char	*temp;
+	char	*retv;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	temp = trimmer(buffer);
+	temp = mem_allocate(fd, buffer);
+	free(buffer);
+	buffer = temp;
+	if (ft_strchr(buffer, '/n'))
+	{
+		retv = ft_substr(buffer, 0, new_line_finder(buffer));
+		temp = ft_strdup(buffer + i + 1);
+		free(buffer);
+		buffer = temp;
+	}
+	else
+		retv = buffer;
+	if (buffer[0] == NULL)
+	{
+		free(buffer);
+		buffer = NULL;
+	}
+	return (retv);
 }
